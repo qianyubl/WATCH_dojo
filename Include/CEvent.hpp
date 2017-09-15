@@ -3,8 +3,7 @@
 
 enum class Event
 {
-    TurnOn,
-    TurnOff,
+    Switch,
 };
 
 #endif

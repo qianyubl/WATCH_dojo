@@ -1,17 +1,16 @@
-#ifndef STATE_HPP
-#define STATE_HPP
+#pragma once
 
 #include "CEvent.hpp"
-class LightBulb;
+class EWatch;
 
 class CState
 {
 public:
     CState() = default;
     virtual ~CState() = default;
-    virtual void handle(const Event &p_event, LightBulb& p_fsm) = 0;
+    virtual void handle(const Event &p_event, EWatch& p_fsm) = 0;
 };
 
-#endif
+
 
 
