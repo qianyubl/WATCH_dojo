@@ -9,7 +9,7 @@
 class EWatch
 {
 public:
-    EWatch() {m_currState = m_stateTimer;}
+    EWatch(std::shared_ptr<CState> p_stateWatch) {m_currState = m_stateTimer; m_stateWatch = p_stateWatch;}
     ~EWatch() = default;
     void process(const Event &p_event);
     std::shared_ptr<CState> getCurrState() const;
