@@ -15,8 +15,8 @@ std::string TimerState::onSecond()
         m_currentTimerValue++;
     }
 
-    return LCD::printIntergerOnScreen(m_currentTimerValue);
-    //return std::to_string(m_currentTimerValue);
+    return LCD::printIntergerOnScreen(std::to_string(m_currentTimerValue));
+
 }
 
 void TimerState::UpClick()

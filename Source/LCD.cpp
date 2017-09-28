@@ -22,26 +22,10 @@ string LCD::getLCDSymbolfromTable(const char p_charNum)
     return g_LCD_Table[l_char2IntIndex];
 }
 
-string LCD::printIntergerOnScreen(const int p_num)
-{
-   if(p_num > 999 || p_num < 0)
-        throw invalid_argument("input number more than 3 digit");
-
-   string l_str = to_string(p_num);
-   string line1, line2, line3;
-   for(auto c : l_str)
-   {
-        string l_p = getLCDSymbolfromTable(c);
-        line1 += l_p.substr(0,3) + " ";
-        line2 += l_p.substr(3,3) + " ";
-        line3 += l_p.substr(6,3) + " ";
-   }
-   line1 = line1+"\n"+line2+"\n"+line3;
-   cout<<line1<<endl;
-   return line1;
-}
 string LCD::printIntergerOnScreen(const string p_str)
 {
+   if ("-" == p_str.substr(0,1))
+      {throw invalid_argument("input number less than 0");}
    string line1, line2, line3;
    for(auto c : p_str)
    {

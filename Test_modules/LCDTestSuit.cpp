@@ -15,26 +15,26 @@
 
 TEST(LCDTestSuit, printOnScreenForSingalNumber)
 {
-    int l_num = 7;
+    string l_num = "7";
     LCD::printIntergerOnScreen(l_num);
 }
 
 TEST(LCDTestSuit, printOnScreenForNumbers)
 {
-    int l_num = 697;
+    string l_num = "697";
     LCD::printIntergerOnScreen(l_num);
 }
 
-
+/*
 TEST(LCDTestSuit, inputNumMoreThan3Digit)
 {
-    int l_num = 2345;
+    string l_num = "2345";
     EXPECT_THROW(LCD::printIntergerOnScreen(l_num),invalid_argument);
 }
-
+*/
 TEST(LCDTestSuit, inputNegtiveNum)
 {
-    int l_num = -42;
+    string l_num = "-42";
     EXPECT_THROW(LCD::printIntergerOnScreen(l_num),invalid_argument);
 }
 

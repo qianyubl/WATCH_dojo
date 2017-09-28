@@ -1,36 +1,33 @@
-#include <GuiObserver.hpp>
+#include "GuiObserver.hpp"
 #include "CEvent.hpp"
+#include <cassert>
 
 void GuiObserver::onSwitchClick()
 {
-    if(m_watchFsm != nullptr)
-    {
-        m_watchFsm->process(Event::Switch);
-    }
+    assert(m_watchFsm != nullptr);
+
+    m_watchFsm->process(Event::Switch);
 }
 
 void GuiObserver::onUpClick()
 {
-    if(m_watchFsm != nullptr)
-    {
-        m_watchFsm->getCurrState()->UpClick();
-    }
+    assert(m_watchFsm != nullptr);
+
+    m_watchFsm->getCurrState()->UpClick();
 }
 
 void GuiObserver::onDownClick()
 {
-    if(m_watchFsm != nullptr)
-    {
-        m_watchFsm->getCurrState()->DownClick();
-    }
+    assert(m_watchFsm != nullptr);
+
+    m_watchFsm->getCurrState()->DownClick();
 }
 
 std::string GuiObserver::onSecond()
 {
-    if(m_watchFsm != nullptr)
-    {
-        return m_watchFsm->getCurrState()->onSecond();
-    }
+    assert(m_watchFsm != nullptr);
+
+    return m_watchFsm->getCurrState()->onSecond();
 }
 
 
