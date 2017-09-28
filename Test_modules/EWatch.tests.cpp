@@ -2,20 +2,21 @@
 #include <gmock/gmock.h>
 #include "GuiObserver.hpp"
 #include "TimeMock.hpp"
+#include "Time.hpp"
 
 using namespace ::testing;
 class WatchTestSuite : public Test
 {
 public:
-    WatchTestSuite(){}
+    WatchTestSuite():m_TimeMock(std::make_shared<TimeMock>()),
+                         m_fsm(std::make_shared<EWatch>(m_TimeMock)),
+                         m_watchGui(GuiObserver(m_fsm))
+    {
 
-    std::shared_ptr<TimeMock> m_TimeMock = std::make_shared<TimeMock>();
-
-
-
-    std::shared_ptr<EWatch> m_fsm{std::make_shared<EWatch>(m_TimeMock)};
-
-    GuiObserver m_watchGui{m_fsm};
+    }
+    std::shared_ptr<TimeMock> m_TimeMock;
+    std::shared_ptr<EWatch> m_fsm;
+    GuiObserver m_watchGui;
 };
 
 
@@ -88,11 +89,17 @@ TEST_F(WatchTestSuite, SecondClickSwitchShouldGoToTimerState)
 
 TEST_F(WatchTestSuite, WatchStateAndShowTime)
 {
-//m_TimeMock
     EXPECT_EQ(m_fsm->m_stateTimer, m_fsm->getCurrState());
     m_watchGui.onSwitchClick();
     EXPECT_EQ(m_fsm->m_stateWatch, m_fsm->getCurrState());
     EXPECT_CALL(*m_TimeMock, getCurrentTime()).WillOnce(Return("13:45"));
     m_watchGui.onSecond();
 }
+
+TEST_F(WatchTestSuite, ShowCurrentTime)
+{
+    Time l_localtime;
+    l_localtime.getCurrentTime();
+}
+
 

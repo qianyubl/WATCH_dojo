@@ -1,0 +1,7 @@
+#pragma once
+#include "ITime.hpp"
+
+class Time : public ITime
+{
+
+};
