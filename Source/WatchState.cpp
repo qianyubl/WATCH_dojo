@@ -9,7 +9,7 @@ void WatchState::handle(const Event &p_event, EWatch& p_fsm)
 
 std::string WatchState::onSecond()
 {
-    return "";
+    return m_time->getCurrentTime();
 }
 
 void WatchState::UpClick()
@@ -18,11 +18,6 @@ void WatchState::UpClick()
 
 void WatchState::DownClick()
 {
-}
-
-void WatchState::registerTime(ITime p_time)
-{
-    m_time = p_time;
 }
 
 
