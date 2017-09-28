@@ -38,36 +38,37 @@ TEST_F(WatchTestSuite, switchEWatchWhenEWatchIsWatch)
     EXPECT_EQ(m_fsm->m_stateTimer, m_fsm->getCurrState());
 }
 
-TEST_F(WatchTestSuite, TheDefaultValueIsZeroForTimer)
+TEST_F(WatchTestSuite, TheDefaultValueIsZeroForTimerAndShowOnLCD)
 {
-    EXPECT_EQ("0", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n|.| \n|_| ", m_watchGui.onSecond());
 }
 
-TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnce)
+TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnceAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("1", m_watchGui.onSecond());
-    EXPECT_EQ("2", m_watchGui.onSecond());
+    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
 }
 
-TEST_F(WatchTestSuite, SecondPressUpShouldStopTimer)
+TEST_F(WatchTestSuite, SecondPressUpShouldStopTimerAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("1", m_watchGui.onSecond());
-    EXPECT_EQ("2", m_watchGui.onSecond());
+    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
     m_watchGui.onUpClick();
-    EXPECT_EQ("2", m_watchGui.onSecond());
-    EXPECT_EQ("2", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+
 }
 
-TEST_F(WatchTestSuite, FirstPressDownShouldResetTimer)
+TEST_F(WatchTestSuite, FirstPressDownShouldResetTimerAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("1", m_watchGui.onSecond());
-    EXPECT_EQ("2", m_watchGui.onSecond());
+    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
 
     m_watchGui.onDownClick();
-    EXPECT_EQ("0", m_watchGui.onSecond());
+    EXPECT_EQ("._. \n|.| \n|_| ", m_watchGui.onSecond());
 }
 
 TEST_F(WatchTestSuite, FirstClickSwitchShouldGoToWatchState)

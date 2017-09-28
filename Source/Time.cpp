@@ -11,6 +11,6 @@ std::string Time::getCurrentTime()
     local = localtime(&nowtime);
 
     cout << local->tm_hour << ":" << local->tm_min << ":" << local->tm_sec <<" " ;
-    return to_string(local->tm_hour) + ":" + to_string(local->tm_min);
+   return to_string(local->tm_hour) + ":" + to_string(local->tm_min);
 }
 

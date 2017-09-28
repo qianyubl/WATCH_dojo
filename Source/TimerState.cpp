@@ -1,6 +1,7 @@
 #include "TimerState.hpp"
 #include "EWatch.hpp"
 #include <iostream>
+#include "LCD.hpp"
 
 void TimerState::handle(const Event &p_event, EWatch& p_fsm)
 {
@@ -14,7 +15,8 @@ std::string TimerState::onSecond()
         m_currentTimerValue++;
     }
 
-    return std::to_string(m_currentTimerValue);
+    return LCD::printIntergerOnScreen(m_currentTimerValue);
+    //return std::to_string(m_currentTimerValue);
 }
 
 void TimerState::UpClick()

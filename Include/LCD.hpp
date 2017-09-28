@@ -13,7 +13,7 @@ extern vector<string> g_LCD_Table;
 class LCD
 {
 public:
-    static void printIntergerOnScreen(const int p_num);
+    static string printIntergerOnScreen(const int p_num);
     static int getIntergerFromScreenString(const string p_str);
 private:
     static string getLCDSymbolfromTable(const char p_charNum);

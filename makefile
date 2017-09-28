@@ -6,7 +6,7 @@ UTINC = -I./googletest/googlemock/include\
         -I./googletest/googletest/include\
         -I./Include
 
-UTFLAG = -g -pthread -DUNIT_TEST #-Wno-write-strings
+UTFLAG = -g -pthread -DUNIT_TEST  -Wall#-Wno-write-strings
 
 all:
 	g++ -std=c++14 -pthread -I./Include Source/*.cpp -o watch.exe -g

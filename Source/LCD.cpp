@@ -21,7 +21,7 @@ string LCD::getLCDSymbolfromTable(const char p_charNum)
     return g_LCD_Table[l_char2IntIndex];
 }
 
-void LCD::printIntergerOnScreen(const int p_num)
+string LCD::printIntergerOnScreen(const int p_num)
 {
    if(p_num > 999 || p_num < 0)
         throw invalid_argument("input number more than 3 digit");
@@ -35,8 +35,9 @@ void LCD::printIntergerOnScreen(const int p_num)
         line2 += l_p.substr(3,3) + " ";
         line3 += l_p.substr(6,3) + " ";
    }
-   cout<<line1<<endl<<line2<<endl<<line3<<endl;
-
+   line1 = line1+"\n"+line2+"\n"+line3;
+   cout<<line1<<endl;
+   return line1;
 }
 
 int LCD::getIntergerFromScreenString(const string p_str)
@@ -44,7 +45,7 @@ int LCD::getIntergerFromScreenString(const string p_str)
 
     isSizeValid(p_str);
     int l_result = 0;
-    for(int i = 0;  i < p_str.size()/LCD_STRING_LENGTH; i++)
+    for(unsigned int i = 0;  i < p_str.size()/LCD_STRING_LENGTH; i++)
     {
         auto l_iter = find(begin(g_LCD_Table), end(g_LCD_Table), p_str.substr(i*9, 9));
         isSymbolValid(l_iter);
