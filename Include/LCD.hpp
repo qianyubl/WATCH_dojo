@@ -15,9 +15,12 @@ class LCD
 public:
     static string printIntergerOnScreen(const int p_num);
     static int getIntergerFromScreenString(const string p_str);
+
+    static string printIntergerOnScreen(const string p_str);
 private:
     static string getLCDSymbolfromTable(const char p_charNum);
     static void isSizeValid(const string p_str);
     static void isSymbolValid(const vector<string>::iterator p_it);
+
 };
 

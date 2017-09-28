@@ -12,7 +12,8 @@ vector<string> g_LCD_Table = {"._.|.||_|",
                               "._.|_.|_|",
                               "._...|..|",
                               "._.|_||_|",
-                              "._.|_|..|"};
+                              "._.|_|..|",
+                              "._.....-."};
 
 
 string LCD::getLCDSymbolfromTable(const char p_charNum)
@@ -29,6 +30,20 @@ string LCD::printIntergerOnScreen(const int p_num)
    string l_str = to_string(p_num);
    string line1, line2, line3;
    for(auto c : l_str)
+   {
+        string l_p = getLCDSymbolfromTable(c);
+        line1 += l_p.substr(0,3) + " ";
+        line2 += l_p.substr(3,3) + " ";
+        line3 += l_p.substr(6,3) + " ";
+   }
+   line1 = line1+"\n"+line2+"\n"+line3;
+   cout<<line1<<endl;
+   return line1;
+}
+string LCD::printIntergerOnScreen(const string p_str)
+{
+   string line1, line2, line3;
+   for(auto c : p_str)
    {
         string l_p = getLCDSymbolfromTable(c);
         line1 += l_p.substr(0,3) + " ";

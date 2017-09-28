@@ -71,6 +71,17 @@ TEST_F(WatchTestSuite, FirstPressDownShouldResetTimerAndShowOnLCD)
     EXPECT_EQ("._. \n|.| \n|_| ", m_watchGui.onSecond());
 }
 
+TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnceAndShowTwoNumberOnLCD)
+{
+    m_watchGui.onUpClick();
+    for(int i = 0; i < 10; i++)
+    {
+       m_watchGui.onSecond();
+    }
+    EXPECT_EQ("... ... \n..| ..| \n..| ..| ",m_watchGui.onSecond());
+}
+
+
 TEST_F(WatchTestSuite, FirstClickSwitchShouldGoToWatchState)
 {
     EXPECT_EQ(m_fsm->m_stateTimer, m_fsm->getCurrState());
@@ -88,13 +99,13 @@ TEST_F(WatchTestSuite, SecondClickSwitchShouldGoToTimerState)
 }
 
 
-TEST_F(WatchTestSuite, WatchStateAndShowTime)
+TEST_F(WatchTestSuite, WatchStateAndShowTimeOnLCD)
 {
     EXPECT_EQ(m_fsm->m_stateTimer, m_fsm->getCurrState());
     m_watchGui.onSwitchClick();
     EXPECT_EQ(m_fsm->m_stateWatch, m_fsm->getCurrState());
-    EXPECT_CALL(*m_TimeMock, getCurrentTime()).WillOnce(Return("13:45"));
-    m_watchGui.onSecond();
+    EXPECT_CALL(*m_TimeMock, getCurrentTime()).WillOnce(Return("11:11"));
+    EXPECT_EQ("... ... ._. ... ... \n..| ..| ... ..| ..| \n..| ..| .-. ..| ..| ",m_watchGui.onSecond());
 }
 
 TEST_F(WatchTestSuite, ShowCurrentTime)

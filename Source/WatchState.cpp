@@ -1,6 +1,7 @@
 #include "WatchState.hpp"
 #include "EWatch.hpp"
 #include <iostream>
+#include "LCD.hpp"
 
 void WatchState::handle(const Event &p_event, EWatch& p_fsm)
 {
@@ -9,7 +10,13 @@ void WatchState::handle(const Event &p_event, EWatch& p_fsm)
 
 std::string WatchState::onSecond()
 {
-    return m_time->getCurrentTime();
+    std::string l_time =  m_time->getCurrentTime();
+    /*auto pos = l_time.find_first_of(":");
+    int l_hour = std::stoi(l_time.subStr(0,pos));
+    int l_min = std::stoi(l_time.subStr(pos+1));*/
+
+    return LCD::printIntergerOnScreen(l_time);
+
 }
 
 void WatchState::UpClick()
