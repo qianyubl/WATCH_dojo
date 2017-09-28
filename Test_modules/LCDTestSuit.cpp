@@ -3,16 +3,6 @@
 #include "LCD.hpp"
 #include <stdexcept>
 
-/*TEST(LCDTestSuit, convertSingleDigitToLCDString)
-{
-    string l_num = "98";
-    vector<string> l_expectedResult = {"._.|_|..|", "._.|_||_|"};
-
-    EXPECT_EQ(LCD::getLCDSymbolfromTable(l_num[0]),l_expectedResult[0]);
-    EXPECT_EQ(LCD::getLCDSymbolfromTable(l_num[1]),l_expectedResult[1]);
-}*/
-
-
 TEST(LCDTestSuit, printOnScreenForSingalNumber)
 {
     string l_num = "7";
@@ -25,13 +15,6 @@ TEST(LCDTestSuit, printOnScreenForNumbers)
     LCD::printIntergerOnScreen(l_num);
 }
 
-/*
-TEST(LCDTestSuit, inputNumMoreThan3Digit)
-{
-    string l_num = "2345";
-    EXPECT_THROW(LCD::printIntergerOnScreen(l_num),invalid_argument);
-}
-*/
 TEST(LCDTestSuit, inputNegtiveNum)
 {
     string l_num = "-42";

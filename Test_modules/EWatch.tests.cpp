@@ -17,6 +17,11 @@ public:
     std::shared_ptr<TimeMock> m_TimeMock;
     std::shared_ptr<EWatch> m_fsm;
     GuiObserver m_watchGui;
+    std::string m_NumberZero = "._. \n|.| \n|_| ";
+    std::string m_NumberOne = "... \n..| \n..| ";
+    std::string m_NumberTwo = "._. \n._| \n|_. ";
+    std::string m_NumberEleven = "... ... \n..| ..| \n..| ..| ";
+
 };
 
 
@@ -40,35 +45,35 @@ TEST_F(WatchTestSuite, switchEWatchWhenEWatchIsWatch)
 
 TEST_F(WatchTestSuite, TheDefaultValueIsZeroForTimerAndShowOnLCD)
 {
-    EXPECT_EQ("._. \n|.| \n|_| ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberZero, m_watchGui.onSecond());
 }
 
 TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnceAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
-    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberOne, m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberTwo, m_watchGui.onSecond());
 }
 
 TEST_F(WatchTestSuite, SecondPressUpShouldStopTimerAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
-    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberOne, m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberTwo, m_watchGui.onSecond());
     m_watchGui.onUpClick();
-    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
-    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberTwo, m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberTwo, m_watchGui.onSecond());
 
 }
 
 TEST_F(WatchTestSuite, FirstPressDownShouldResetTimerAndShowOnLCD)
 {
     m_watchGui.onUpClick();
-    EXPECT_EQ("... \n..| \n..| ", m_watchGui.onSecond());
-    EXPECT_EQ("._. \n._| \n|_. ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberOne, m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberTwo, m_watchGui.onSecond());
 
     m_watchGui.onDownClick();
-    EXPECT_EQ("._. \n|.| \n|_| ", m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberZero, m_watchGui.onSecond());
 }
 
 TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnceAndShowTwoNumberOnLCD)
@@ -78,7 +83,7 @@ TEST_F(WatchTestSuite, TheTimerValueIncrementedWhenUpinkClickedOnceAndShowTwoNum
     {
        m_watchGui.onSecond();
     }
-    EXPECT_EQ("... ... \n..| ..| \n..| ..| ",m_watchGui.onSecond());
+    EXPECT_EQ(m_NumberEleven, m_watchGui.onSecond());
 }
 
 
